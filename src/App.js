@@ -1,6 +1,8 @@
 import './App.css';
 import Header from './component/Header';
-import Main from './component/Main';
+import Special from './component/Special';
+import Testimonial from './component/Testimonial';
+import About from './component/About';
 import Footer from './component/Footer';
 import Nav from './component/Nav';
 
@@ -8,9 +10,11 @@ import Nav from './component/Nav';
 function App() {
   return (
     <>
-    <Header />
     <Nav />
-    <Main />
+    <Header />
+    <Special />
+    <Testimonial />
+    <About />
     <Footer />
     </>
   );

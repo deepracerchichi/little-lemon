@@ -1,0 +1,173 @@
+/* Specials.css */
+.specials-section {
+  background-color: #ffffff;
+  padding: 4rem 0;
+}
+
+.specials-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.specials-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.specials-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333333;
+  margin: 0;
+  font-family: 'Markazi Text', serif;
+}
+
+.menu-button {
+  background-color: #F4CE14;
+  color: #495E57;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Karla', sans-serif;
+}
+
+.menu-button:hover {
+  background-color: #495E57;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 206, 20, 0.3);
+  color:#F4CE14;
+}
+
+.specials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.special-card {
+  background-color: #F8F8F8;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.special-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.special-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.special-content {
+  padding: 1.5rem;
+}
+
+.special-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.special-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #495E57;
+  margin: 0;
+  font-family: 'Markazi Text', serif;
+}
+
+.special-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #F4851D;
+  font-family: 'Markazi Text', serif;
+}
+
+.special-description {
+  color: #333333;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Karla', sans-serif;
+}
+
+.delivery-button {
+  background-color: #F4CE14;
+  color: #495E57;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Karla', sans-serif;
+}
+
+.delivery-button:hover {
+  background-color: #495E57;
+  transform: translateY(-2px);
+  color: #F4CE14;
+}
+
+.delivery-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .specials-container {
+    padding: 0 1rem;
+  }
+  
+  .specials-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .specials-title {
+    font-size: 2rem;
+  }
+  
+  .specials-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .special-content {
+    padding: 1rem;
+  }
+  
+  .special-name {
+    font-size: 1.3rem;
+  }
+  
+  .special-description {
+    font-size: 0.9rem;
+  }
+}
