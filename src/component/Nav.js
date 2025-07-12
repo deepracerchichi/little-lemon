@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../img/logo.png';
 import './Nav.css';
 
@@ -7,26 +8,28 @@ const Nav = () => {
     <nav className="navbar">
       <div className="nav-container">
         <div className="nav-logo">
-          <img src={logo} alt="Little Lemon Logo" className="logo-image"/>
+          <Link to="/">
+            <img src={logo} alt="Little Lemon Logo" className="logo-image"/>
+          </Link>
         </div>
         <ul className="nav-menu">
           <li className="nav-item">
-            <a href="#home" className="nav-link">HOME</a>
+            <Link to="/" className="nav-link">HOME</Link>
           </li>
           <li className="nav-item">
-            <a href="#about" className="nav-link">ABOUT</a>
+            <Link to="/about" className="nav-link">ABOUT</Link>
           </li>
           <li className="nav-item">
-            <a href="#menu" className="nav-link">MENU</a>
+            <Link to="/menu" className="nav-link">MENU</Link>
           </li>
           <li className="nav-item">
-            <a href="#reservations" className="nav-link">RESERVATIONS</a>
+            <Link to="/reservations" className="nav-link">RESERVATIONS</Link>
           </li>
           <li className="nav-item">
-            <a href="#order" className="nav-link">ORDER ONLINE</a>
+            <Link to="/order" className="nav-link">ORDER ONLINE</Link>
           </li>
           <li className="nav-item">
-            <a href="#login" className="nav-link">LOGIN</a>
+            <Link to="/login" className="nav-link">LOGIN</Link>
           </li>
         </ul>
       </div>
