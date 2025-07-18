@@ -8,14 +8,14 @@ const Menu = () => {
       id: 1,
       name: "Greek Salad",
       price: "$12.99",
-      description: "Fresh mixed greens, tomatoes, olives, feta cheese, and our signature dressing",
+      description: "The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons. ",
       image: "/img/greek salad.jpg"
     },
     {
       id: 2,
       name: "Bruschetta",
       price: "$8.99",
-      description: "Toasted bread topped with fresh tomatoes, garlic, and herbs",
+      description: "Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil. Toppings of tomato, veggies, beans, cured pork, or cheese are examples of variations. In Italy, a brustolina grill is frequently used to create bruschetta.",
       image: "/img/bruchetta.png"
     },
     {
@@ -24,6 +24,20 @@ const Menu = () => {
       price: "$6.99",
       description: "Our signature lemon dessert with a perfect balance of sweet and tart",
       image: "/img/lemon dessert.jpg"
+    },
+    {
+      id: 4,
+      name: "Pasta",
+      price: "$18.99",
+      description: "Our signature lemon dessert with a perfect balance of sweet and tart",
+      image: "/img/pasta.jpg"
+    },
+    {
+      id: 5,
+      name: "Grilled Fish",
+      price: "$20.00",
+      description: "Freshly grilled fish served with a side of seasonal vegetables and lemon butter sauce",
+      image: "/img/fish.jpg"
     }
   ];
 

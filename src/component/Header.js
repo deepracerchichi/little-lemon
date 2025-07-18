@@ -13,7 +13,7 @@ const Header = () => {
             <h1 className="header-title">Little Lemon</h1>
             <h2 className="header-subtitle">Chicago</h2>
             <p className="header-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+              Welcome to Little Lemon — a cozy neighborhood bistro in the heart of Chicago, known for vibrant Mediterranean flavors and warm hospitality. Whether you're stopping by for brunch, dinner, or just a glass of wine, we promise a fresh, memorable dining experience.
             </p>
             <Link to="/reservations" className="reserve-button">Reserve a Table</Link>
           </div>

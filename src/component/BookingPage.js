@@ -1,273 +1,400 @@
-import React, { useState } from 'react';
-import './BookingPage.css';
+import React, { useState, useEffect } from 'react';
+import { Calendar, Clock, Users, Gift, ChevronLeft, CheckCircle, User } from 'lucide-react';
+import './ReservationForm.css';
 
-const BookingPage = () => {
+// Mock API functions
+const fetchAvailableTimes = (date) => {
+  const dayOfWeek = new Date(date).getDay();
+  if (dayOfWeek === 0 || dayOfWeek === 6) {
+    return ['17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00'];
+  }
+  return ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+};
+
+const submitReservation = async (formData) => {
+  // Simulate API call
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  console.log('Reservation submitted:', formData);
+  return { success: true, confirmationId: 'LL' + Date.now() };
+};
+
+const ReservationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({
-    date: '',
-    time: '',
-    guests: 1,
-    seatingArea: '',
-    occasion: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    comments: ''
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
+  const [confirmationData, setConfirmationData] = useState(null);
+  
+  // Step 1 - Reservation Details
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [guests, setGuests] = useState(1);
+  const [occasion, setOccasion] = useState('');
+  const [seatingArea, setSeatingArea] = useState('');
+  const [availableTimes, setAvailableTimes] = useState([]);
+  
+  // Step 2 - Customer Information
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [specialRequests, setSpecialRequests] = useState('');
 
-  const availableTimes = [
-    '17:00',
-    '18:00',
-    '19:00',
-    '20:00',
-    '21:00',
-    '22:00'
-  ];
+  // Update available times when date changes
+  useEffect(() => {
+    if (date) {
+      const times = fetchAvailableTimes(date);
+      setAvailableTimes(times);
+      setTime(''); // Reset time selection
+    }
+  }, [date]);
 
-  const seatingAreas = [
-    'Indoor Dining',
-    'Outdoor Patio',
-    'Bar Area',
-    'Private Room'
-  ];
-
-  const occasions = [
-    'Birthday',
-    'Anniversary',
-    'Business',
-    'Date Night',
-    'Family Gathering',
-    'Other'
-  ];
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+  const handleStep1Submit = () => {
+    if (!date || !time || !guests) {
+      alert('Please fill in all required fields');
+      return;
+    }
+    setCurrentStep(2);
   };
 
-  const handleGuestChange = (increment) => {
-    setFormData(prev => ({
-      ...prev,
-      guests: Math.max(1, Math.min(10, prev.guests + increment))
-    }));
-  };
+  const handleFinalSubmit = async () => {
+    if (!firstName || !lastName || !email || !phone) {
+      alert('Please fill in all required customer information');
+      return;
+    }
 
-  const handleNext = () => {
-    if (currentStep < 2) {
-      setCurrentStep(currentStep + 1);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      const formData = {
+        date, time, guests, occasion, seatingArea,
+        firstName, lastName, email, phone, specialRequests
+      };
+      
+      const result = await submitReservation(formData);
+      
+      if (result.success) {
+        setConfirmationData({ ...formData, confirmationId: result.confirmationId });
+        setIsConfirmed(true);
+      }
+    } catch (error) {
+      alert('Error submitting reservation. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-  const handleBack = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
+  const resetForm = () => {
+    setCurrentStep(1);
+    setIsConfirmed(false);
+    setConfirmationData(null);
+    setDate('');
+    setTime('');
+    setGuests(1);
+    setOccasion('');
+    setSeatingArea('');
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPhone('');
+    setSpecialRequests('');
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Booking submitted:', formData);
-    alert('Booking submitted successfully!');
-  };
-
-  const getProgressPercentage = () => {
-    return (currentStep / 2) * 100;
-  };
-
-  return (
-    <div className="booking-page">
-      <div className="booking-container">
-        <h1 className="booking-title">Reserve a Table</h1>
-        
-        {/* Progress Bar */}
-        <div className="progress-container">
-          <div className="progress-bar">
-            <div 
-              className="progress-fill" 
-              style={{ width: `${getProgressPercentage()}%` }}
-            ></div>
+  if (isConfirmed) {
+    return (
+      <div className="reservation-container">
+        <div className="confirmation-header">
+          <div className="confirmation-icon">
+            <CheckCircle size={48} />
           </div>
-          <div className="progress-text">
-            Step {currentStep} of 2
-          </div>
+          <h1>Booking Confirmed!</h1>
+          <p>Thank you for choosing Little Lemon, {confirmationData?.firstName}!</p>
         </div>
 
-        <form className="booking-form" onSubmit={handleSubmit}>
-          {/* Step 1: Reservation Details */}
-          <div className={`form-step ${currentStep === 1 ? 'active' : ''}`}>
-            <div className="form-group">
-              <label htmlFor="date">Select Date</label>
-              <input
-                type="date"
-                id="date"
-                name="date"
-                value={formData.date}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="time">Select Time</label>
-              <select
-                id="time"
-                name="time"
-                value={formData.time}
-                onChange={handleChange}
-                required
-              >
-                <option value="">17:00</option>
-                {availableTimes.map(time => (
-                  <option key={time} value={time}>{time}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="seatingArea">Select Seating Area</label>
-              <select
-                id="seatingArea"
-                name="seatingArea"
-                value={formData.seatingArea}
-                onChange={handleChange}
-              >
-                <option value="">Seating Area</option>
-                {seatingAreas.map(area => (
-                  <option key={area} value={area}>{area}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="occasion" className="optional-label">Select Occasion</label>
-              <select
-                id="occasion"
-                name="occasion"
-                value={formData.occasion}
-                onChange={handleChange}
-              >
-                <option value="">Occasion</option>
-                {occasions.map(occasion => (
-                  <option key={occasion} value={occasion}>{occasion}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label>Select Number of Diners</label>
-              <div className="diners-counter">
-                <button 
-                  type="button" 
-                  className="counter-btn" 
-                  onClick={() => handleGuestChange(-1)}
-                  disabled={formData.guests <= 1}
-                >
-                  −
-                </button>
-                <span className="counter-value">{formData.guests}</span>
-                <button 
-                  type="button" 
-                  className="counter-btn" 
-                  onClick={() => handleGuestChange(1)}
-                  disabled={formData.guests >= 10}
-                >
-                  +
-                </button>
+        <div className="confirmation-details">
+          <h2>Your Reservation Details</h2>
+          <p className="confirmation-subtitle">We look forward to serving you</p>
+          
+          <div className="detail-cards">
+            <div className="detail-card green">
+              <div className="detail-label">Date</div>
+              <div className="detail-value">
+                {new Date(confirmationData?.date).toLocaleDateString('en-US', {
+                  weekday: 'long',
+                  month: 'long',
+                  day: 'numeric'
+                })}
               </div>
             </div>
-          </div>
 
-          {/* Step 2: Personal Information */}
-          <div className={`form-step ${currentStep === 2 ? 'active' : ''}`}>
-            <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                required
-              />
+            <div className="detail-card blue">
+              <div className="detail-label">Time</div>
+              <div className="detail-value">{confirmationData?.time}</div>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                required
-              />
+            <div className="detail-card purple">
+              <div className="detail-label">Party Size</div>
+              <div className="detail-value">{confirmationData?.guests} Guests</div>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
+            <div className="detail-card yellow">
+              <div className="detail-label">Occasion</div>
+              <div className="detail-value">{confirmationData?.occasion || 'Date Night'}</div>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="phone">Phone Number</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-              />
+            <div className="detail-card teal">
+              <div className="detail-label">First Name</div>
+              <div className="detail-value">{confirmationData?.firstName}</div>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="comments" className="optional-label">Comments</label>
-              <textarea
-                id="comments"
-                name="comments"
-                value={formData.comments}
-                onChange={handleChange}
-                placeholder="Special requests or dietary requirements..."
-              />
+            <div className="detail-card pink">
+              <div className="detail-label">Last Name</div>
+              <div className="detail-value">{confirmationData?.lastName}</div>
+            </div>
+
+            <div className="detail-card indigo">
+              <div className="detail-label">Email Address</div>
+              <div className="detail-value">{confirmationData?.email}</div>
+            </div>
+
+            <div className="detail-card orange">
+              <div className="detail-label">Phone Number</div>
+              <div className="detail-value">{confirmationData?.phone}</div>
             </div>
           </div>
 
-          {/* Form Buttons */}
-          <div className="form-buttons">
-            <button type="button" className="cancel-button">
-              Cancel
+          <div className="important-info">
+            <h3>What to Expect</h3>
+            <ul>
+              <li>• Authentic Mediterranean cuisine prepared with fresh, local ingredients</li>
+              <li>• Warm, welcoming atmosphere perfect for any occasion</li>
+              <li>• Attentive service from our experienced culinary team</li>
+            </ul>
+          </div>
+
+          <div className="confirmation-actions">
+            <button className="btn-secondary" onClick={() => window.print()}>
+              Print Reservation
             </button>
-            
-            {currentStep === 1 ? (
-              <button type="button" className="next-button" onClick={handleNext}>
-                Next →
-              </button>
-            ) : (
-              <>
-                <button type="button" className="back-button" onClick={handleBack}>
-                  ← Back
-                </button>
-                <button type="submit" className="submit-button">
-                  Make Your Reservation
-                </button>
-              </>
-            )}
+            <button className="btn-primary" onClick={resetForm}>
+              Add to Calendar
+            </button>
           </div>
-        </form>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="reservation-container">
+      <div className="reservation-header">
+        <h1>Reserve a Table</h1>
+        <p>Experience authentic Mediterranean cuisine at Little Lemon</p>
+      </div>
+
+      <div className="form-container">
+        {currentStep === 1 ? (
+          <div className="step-content">
+            <div className="step-header">
+              <h2>Book Your Experience</h2>
+              <p>Join us for an unforgettable dining experience featuring fresh, locally-sourced ingredients and traditional Mediterranean recipes passed down through generations.</p>
+            </div>
+
+            <div className="form-fields">
+              <div className="field-group">
+                <label htmlFor="date">
+                  <Calendar size={16} />
+                  Choose date
+                </label>
+                <input
+                  type="date"
+                  id="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  min={new Date().toISOString().split('T')[0]}
+                  className="date-input"
+                />
+              </div>
+
+              <div className="field-group">
+                <label htmlFor="time">
+                  <Clock size={16} />
+                  Or choose time from dropdown
+                </label>
+                <select
+                  id="time"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  className="time-select"
+                >
+                  <option value="">Select a time</option>
+                  {availableTimes.map((timeOption) => (
+                    <option key={timeOption} value={timeOption}>
+                      {timeOption}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="field-group">
+                <label htmlFor="guests">
+                  <Users size={16} />
+                  Number of guests
+                </label>
+                <input
+                  type="number"
+                  id="guests"
+                  value={guests}
+                  onChange={(e) => setGuests(e.target.value)}
+                  min="1"
+                  max="10"
+                  className="guests-input"
+                />
+              </div>
+
+              <div className="field-group">
+                <label htmlFor="occasion">
+                  <Gift size={16} />
+                  Occasion
+                </label>
+                <select
+                  id="occasion"
+                  value={occasion}
+                  onChange={(e) => setOccasion(e.target.value)}
+                  className="occasion-select"
+                >
+                  <option value="">Select an occasion (optional)</option>
+                  <option value="Birthday">Birthday</option>
+                  <option value="Anniversary">Anniversary</option>
+                  <option value="Date Night">Date Night</option>
+                  <option value="Business Dinner">Business Dinner</option>
+                  <option value="Celebration">Celebration</option>
+                </select>
+              </div>
+
+              <div className="field-group">
+                <label htmlFor="seating">
+                  Select Seating Area
+                </label>
+                <select
+                  id="seating"
+                  value={seatingArea}
+                  onChange={(e) => setSeatingArea(e.target.value)}
+                  className="seating-select"
+                >
+                  <option value="">Seating Area</option>
+                  <option value="Indoor">Indoor</option>
+                  <option value="Outdoor">Outdoor</option>
+                  <option value="Private">Private Room</option>
+                  <option value="Bar">Bar Area</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="form-actions">
+              <button className="btn-cancel" onClick={resetForm}>
+                Cancel
+              </button>
+              <button className="btn-primary" onClick={handleStep1Submit}>
+                Next
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="step-content">
+            <div className="step-header">
+              <div className="customer-info-icon">
+                <User size={20} />
+              </div>
+              <h2>Customer Information</h2>
+            </div>
+
+            <div className="form-fields">
+              <div className="field-group">
+                <label htmlFor="firstName">* First Name</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="John"
+                  className="name-input"
+                />
+              </div>
+
+              <div className="field-group">
+                <label htmlFor="lastName">* Last Name</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="Doe"
+                  className="name-input"
+                />
+              </div>
+
+              <div className="field-group">
+                <label htmlFor="email">* Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="johndoe@gmail.com"
+                  className="email-input"
+                />
+              </div>
+
+              <div className="field-group">
+                <label htmlFor="phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="(555) 123- 4567"
+                  className="phone-input"
+                />
+              </div>
+
+              <div className="field-group">
+                <label htmlFor="requests">Special Requests</label>
+                <textarea
+                  id="requests"
+                  value={specialRequests}
+                  onChange={(e) => setSpecialRequests(e.target.value)}
+                  placeholder="Any special requests, dietary restrictions or accessibility needs..."
+                  className="requests-textarea"
+                  rows="4"
+                />
+              </div>
+            </div>
+
+            <div className="form-actions">
+              <button className="btn-secondary" onClick={() => setCurrentStep(1)}>
+                <ChevronLeft size={16} />
+                Back
+              </button>
+              <button 
+                className="btn-primary"
+                onClick={handleFinalSubmit}
+                disabled={isSubmitting}
+              >
+                <CheckCircle size={16} />
+                {isSubmitting ? 'Processing...' : 'Make your Reservations'}
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default BookingPage;
+export default ReservationForm;
