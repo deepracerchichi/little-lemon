@@ -15,7 +15,7 @@
 
 /* Hero Section */
 .hero-section {
-  background: linear-gradient(135deg, #495E57 0%, #3a4a45 100%);
+  background-color: #495E57;
   color: white;
   padding: 5rem 0;
   position: relative;
@@ -52,7 +52,6 @@
   margin-bottom: 1rem;
   font-family: 'Markazi Text', serif;
   line-height: 1.1;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero-subtitle {
@@ -189,6 +188,8 @@
 
 .card-content {
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .card-icon {
@@ -212,6 +213,21 @@
   font-weight: 600;
   font-size: 1.1rem;
   font-family: 'Karla', sans-serif;
+}
+
+.ingredient-card.with-image {
+  background: none;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 /* Values Section */
@@ -439,6 +455,7 @@
 .cta-button.primary {
   background-color: #F4CE14;
   color: #495E57;
+  text-decoration: none;;
 }
 
 .cta-button.primary:hover {
@@ -451,6 +468,7 @@
   background-color: transparent;
   color: #F4CE14;
   border: 2px solid #F4CE14;
+  text-decoration: none;
 }
 
 .cta-button.secondary:hover {

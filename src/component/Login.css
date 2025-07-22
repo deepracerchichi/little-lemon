@@ -37,7 +37,7 @@ body {
 
 /* Left Side - Branding */
 .login-brand {
-  background: linear-gradient(135deg, #495E57 0%, #3a4a45 100%);
+  background-color:#495E57;
   color: white;
   padding: 3rem;
   display: flex;
@@ -59,11 +59,11 @@ body {
 .brand-title {
   font-family: 'Markazi Text', serif;
   font-size: 3.5rem;
-  font-weight: 700;
+  font-weight: 500;
   color: #F4CE14;
   line-height: 1.1;
   margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  
 }
 
 .brand-subtitle {

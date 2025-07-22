@@ -1,28 +1,31 @@
 /* ReservationForm.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;500;600;700&family=Karla:wght@300;400;500;600;700&display=swap');
+
 .reservation-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: #edefee;
+  
 }
 
 .reservation-header {
-  background: linear-gradient(135deg, #5a6c57 0%, #495f47 100%);
-  color: white;
+  background-color: #495E57;
+  color: #F4CE14;
   text-align: center;
   padding: 3rem 1rem;
   margin-bottom: 2rem;
+  font-family: Markazi Text, serif;
 }
 
 .reservation-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 4rem;
+  font-weight: 400;
   margin-bottom: 0.5rem;
   letter-spacing: -0.025em;
 }
 
 .reservation-header p {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   opacity: 0.9;
   max-width: 600px;
   margin: 0 auto;
@@ -49,15 +52,18 @@
 
 .step-header h2 {
   font-size: 1.5rem;
-  font-weight: 600;
-  color: #2d3748;
+  font-weight: 700;
+  color: #495E57;
   margin-bottom: 0.5rem;
+  font-family: 'Karla', sans-serif;
 }
 
 .step-header p {
   color: #718096;
   font-size: 0.9rem;
+  font-weight: 500;
   line-height: 1.5;
+  font-family: 'Karla', sans-serif;
 }
 
 .customer-info-icon {
@@ -84,10 +90,11 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-weight: 500;
-  color: #4a5568;
+  font-weight: 700;
+  color: #495E57;
   margin-bottom: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-family: 'Karla', sans-serif;
 }
 
 .field-group input,
@@ -101,6 +108,9 @@
   transition: all 0.2s ease;
   background: white;
   box-sizing: border-box;
+  font-family: 'Karla', sans-serif;
+  font-weight: 500;
+  color: #495E57;
 }
 
 .field-group input:focus,
@@ -158,25 +168,28 @@
 
 .btn-primary {
   flex: 1;
-  background: linear-gradient(135deg, #5a6c57 0%, #495f47 100%);
-  color: white;
+  background-color: #F4CE14;
+  color: #495E57;
   border: none;
-  padding: 0.875rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  font-family: 'Karla', sans-serif;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, #495f47 0%, #3a4d38 100%);
+  background-color: #495E57;
+  color: #F4CE14;
+  border-radius: 10px;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(90, 108, 87, 0.3);
+  box-shadow: 0 8px 20px #4e7870;
 }
 
 .btn-primary:disabled {
@@ -186,40 +199,72 @@
 }
 
 .btn-secondary {
-  background: white;
-  color: #4a5568;
-  border: 1px solid #d1d5db;
-  padding: 0.875rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 1rem;
+  flex: 1;
+  background-color: #F4CE14;
+  color: #495E57;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
+  font-family: 'Karla', sans-serif;
 }
 
 .btn-secondary:hover {
-  background: #f7fafc;
-  border-color: #a0aec0;
+  background-color: #495E57;
+  color: #F4CE14;
+  border-radius: 10px;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px #4e7870;
 }
 
 .btn-cancel {
-  background: transparent;
-  color: #718096;
-  border: 1px solid #e2e8f0;
-  padding: 0.875rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 1rem;
+  flex: 1;
+  background-color: #F4CE14;
+  color: #495E57;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Karla', sans-serif;
 }
 
 .btn-cancel:hover {
-  background: #f7fafc;
-  color: #4a5568;
+  background-color: #495E57;
+  color: #F4CE14;
+  border-radius: 10px;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px #4e7870;
+}
+
+.error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 1px #ef4444;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.field-group {
+  position: relative;
+  margin-bottom: 1rem;
 }
 
 /* Confirmation Page Styles */
@@ -280,6 +325,9 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
   margin-bottom: 2rem;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
 }
 
 .detail-card {
@@ -289,45 +337,20 @@
   backdrop-filter: blur(10px);
 }
 
-.detail-card.green {
-  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-  border-color: #b8e6c1;
+.confirmation-id {
+  color: #495E57;
+  margin: 16px 0;
+  text-align: center;
 }
 
-.detail-card.blue {
-  background: linear-gradient(135deg, #cce7ff 0%, #b8dcff 100%);
-  border-color: #a3d0ff;
-}
-
-.detail-card.purple {
-  background: linear-gradient(135deg, #e2d5f1 0%, #d4c4e8 100%);
-  border-color: #c7b3df;
-}
-
-.detail-card.yellow {
-  background: linear-gradient(135deg, #fff3cd 0%, #ffecb5 100%);
-  border-color: #ffe69c;
-}
-
-.detail-card.teal {
-  background: linear-gradient(135deg, #c2f0fc 0%, #a7e7f7 100%);
-  border-color: #8dddf2;
-}
-
-.detail-card.pink {
-  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
-  border-color: #f48fb1;
-}
-
-.detail-card.indigo {
-  background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
-  border-color: #9fa8da;
-}
-
-.detail-card.orange {
-  background: linear-gradient(135deg, #ffedcc 0%, #ffe0b3 100%);
-  border-color: #ffd699;
-}
+.detail-card.lemon-yellow { background: #f1de7f; color: #495E57; }
+.detail-card.lemon-green { background: #adddcd; color: white; }
+.detail-card.lemon-olive { background: #bec5d2; color: white; }
+.detail-card.lemon-yellow-light { background: #F5E6A3; color: #495E57; }
+.detail-card.lemon-green-light { background: #9ebd9a; color: white; }
+.detail-card.lemon-cream { background: #EDEFEE; color: #495E57; }
+.detail-card.lemon-sage { background: #9cb093; color: white; }
+.detail-card.lemon-gold { background: #e8ddb5; color: #495E57; }
 
 .detail-label {
   font-size: 0.875rem;

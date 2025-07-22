@@ -38,6 +38,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-family: 'Karla', sans-serif;
+  text-decoration: none;
 }
 
 .menu-button:hover {
@@ -124,6 +125,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-family: 'Karla', sans-serif;
+  text-decoration: none;
 }
 
 .delivery-button:hover {

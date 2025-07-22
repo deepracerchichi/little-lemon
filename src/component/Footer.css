@@ -63,6 +63,17 @@
   flex-direction: column;
   gap: 0.8rem;
 }
+.footer-list li {
+  color:#666666;
+  font-size: 0.9rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-family: 'Karla', sans-serif;
+
+}
 
 .footer-link {
   color: #666666;

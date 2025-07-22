@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-image">
             <img 
-              src="/img/chefa.jpg" 
+              src="/img/chefb.jpg" 
               alt="Restaurant interior"
               className="footer-img"
             />
@@ -30,20 +30,14 @@ const Footer = () => {
             
             <div className="footer-section">
               <h3 className="footer-title">Contact</h3>
-              <div className="contact-info">
-                <div className="contact-item">
-                  <span className="contact-label">ADDRESS</span>
-                  <p>123 Main Street, Chicago, IL 60601</p>
-                </div>
-                <div className="contact-item">
-                  <span className="contact-label">PHONE NUMBER</span>
-                  <p>(555) 123-4567</p>
-                </div>
-                <div className="contact-item">
-                  <span className="contact-label">EMAIL</span>
-                  <p>info@littlelemon.com</p>
-                </div>
-              </div>
+              <ul classname="footer-list">
+                <span className="social-label">123 Main Street, Chicago, IL</span>
+                <br />
+                <span className="social-label">(555) 123-4567</span>
+                <br />
+                <span className="social-label">info@littlelemon.com</span>
+              </ul>
+              
             </div>
             
             <div className="footer-section">
@@ -51,15 +45,12 @@ const Footer = () => {
               <div className="social-info">
                 <div className="social-item">
                   <span className="social-label">FACEBOOK</span>
-                  <p>@littlelemonchicago</p>
                 </div>
                 <div className="social-item">
                   <span className="social-label">INSTAGRAM</span>
-                  <p>@littlelemonchi</p>
                 </div>
                 <div className="social-item">
                   <span className="social-label">TWITTER</span>
-                  <p>@littlelemonchi</p>
                 </div>
               </div>
             </div>

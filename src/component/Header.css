@@ -63,12 +63,15 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-family: 'Karla', sans-serif;
+  text-decoration: none;
 }
 
 .reserve-button:hover {
-  background-color: #F4CE14;
+  background-color: transparent;
+  color: #F4CE14;
+  border: 2px solid #F4CE14;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(244, 206, 20, 0.3);
+  
 }
 
 

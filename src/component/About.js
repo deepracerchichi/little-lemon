@@ -1,5 +1,6 @@
 import React from 'react';
 import './About.css';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
@@ -44,14 +45,12 @@ const About = () => {
             <div className="story-images">
               <div className="image-grid">
                 <div className="image-card chef-card">
+                  <img src="/img/chefa.jpg" alt="Fresh Ingredients" className="card-image" />
                   <div className="card-content">
-                    <div className="card-icon">
-                      <span className="icon-chef">👨‍🍳</span>
-                    </div>
-                    <p className="card-text">Expert Chefs</p>
+                    
                   </div>
                 </div>
-                <div className="image-card ingredient-card">
+                <div className="image-card ingredient-card with-image">
                   <img src="/img/seas.jpg" alt="Fresh Ingredients" className="card-image" />
                   <div className="card-content">
                     
@@ -156,8 +155,8 @@ const About = () => {
               Join us for an unforgettable Mediterranean dining experience in the heart of Chicago
             </p>
             <div className="cta-buttons">
-              <button className="cta-button primary">Make a Reservation</button>
-              <button className="cta-button secondary">View Our Menu</button>
+              <Link to="/reservations" className="cta-button primary">Make a Reservation</Link>
+              <Link to="/menu" className="cta-button secondary">View Our Menu</Link>
             </div>
           </div>
         </div>
