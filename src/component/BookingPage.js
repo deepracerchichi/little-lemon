@@ -98,9 +98,11 @@ const ReservationForm = () => {
           }
           break;
         case 'phone':
-          if (value.trim() && !/^[\+]?[1-9][\d]{0,15}$/.test(value.replace(/[\s\-\(\)\.]/g, ''))) {
+          if (value.trim() && !/^[+]?[1-9][\d]{0,15}$/.test(value.replace(/[\s\-().]/g, ''))) {
             errors.phone = 'Please enter a valid phone number';
           }
+          break;
+        default:
           break;
       }
       return errors;
