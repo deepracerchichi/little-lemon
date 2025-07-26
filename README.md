@@ -37,6 +37,6 @@ The website includes multiple pages/sections:
 4. Open http://localhost:3000 to view in browser
 
 ## Live Preview
-You can view it live on : https://littlelem.netlify.app/
+- You can view it live on : https://littlelem.netlify.app/
 
 This project demonstrates modern web development practices, responsive design principles, and practical implementation of a real-world business solution for the restaurant industry.
